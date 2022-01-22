@@ -76,6 +76,8 @@ class KotlinJvmTaskExecutor @Inject internal constructor(
                     }
                     .given(outputs.abijar).notEmpty {
                       plugin(plugins.jvmAbiGen) {
+                        // TODO(bencodes) We need to support the single-pass abi gen mode
+                        flag("useLegacyAbiGen", "true")
                         flag("outputDir", directories.abiClasses)
                       }
                       given(outputs.jar).empty {
